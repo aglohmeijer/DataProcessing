@@ -1,0 +1,30 @@
+Name: Anne Lohmeijer
+UvA ID: 10447555
+Javascript Reading Assignment
+
+Difference between '==' and '==='
+The difference between the == operator and the === operator is that for the double equal sign (==)
+the value/content should be equal. For the triple equal (===) operator the type has to be the equal as well.
+Hence three equal signs means 'equality without type coersion (conversion of one type of object to a new 
+object with different type but same content as before the conversion)'.
+
+Closure function
+In Javascript a closure is an inner function which has acces to variables which for a normal function
+would be out of scope. The three scope chains of a closure are its own scope, outer function's variables,
+and global variables in the code.
+
+Higher order function
+Higher-order functions are functions that operate on other functions (e.g. taking them as arguments
+or by returning them).
+
+Query Selector
+A querySelector returns elements that matches specific CSS selector in a given document.
+We used query selectors a lot in the previous DataProcessing assignments. For example, the line
+dom.by_tag('a')[0].content returns the content of the first <a> element in the document 'dom'.
+
+
+
+
+
+ 
+
