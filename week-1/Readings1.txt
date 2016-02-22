@@ -1,0 +1,17 @@
+Questions Reading 1
+Week 1 Data Processing
+Anne Lohmeijer
+UvA ID 10447555
+
+Visualization: 
+http://i.stack.imgur.com/bDljj.jpg 
+
+1. See attachment.
+
+2. The changes in the x, y location are very clear in this visualization. The position change is the Bertin's characterization which makes this visualization such interesting. You could say this visual variable is said to be selective since one can very easy select one variable from a group. Since every line represents a different flight route a distinction can easily be made from another flight route.
+
+Furthermore the colour is a visual variable which is selective as well. Besides the fact that a viewer cannot easily make a distinction between airlines due to the weak contrast, this variable is indeed very selective. The thing is that the visualization is very large hence a distinction in colours is hard to make.
+
+3. Visualization is indeed a very functional art. I can imagine that there are a lot of airline companies which, on the basis of this visualization, determine which flight route could be very profitable if they let their airplanes fly on a specific route. Since the airline market is a very large one in which a huge amount of money circulate it's definitely a functional art.
+
+4. With this visualization the author is showing the global airline density. One can easily see which country on the world has the most flight routes and you can conclude which airline company is flying the most in a specific country. Furthermore the visualization allows comparisons between airline companies and coutries. It's hard to organize with this visualization since there are no numbers shown. There is the possibility to make a list but it would be a lot of work counting all the flight routes. The main task is to tell at first glance which airline does the most routes.
