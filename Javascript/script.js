@@ -53,9 +53,11 @@ function createTransform(domain, range){
 }
  
 // CanvasRenderingContext2D
-var canvas = document.getElementById('mycanvas');
+var canvas = document.getElementById('mycanvas')
 var width = document.getElementById('mycanvas').width;
 var height = document.getElementById('mycanvas').height;
+
+document.getElementById("mycanvas").style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
 
 // transform all temperatures to screen coordinates
 var rangetemps = [];
@@ -76,26 +78,41 @@ var transform = createTransform(domaindates, [100, 780]);
 var ctx = canvas.getContext('2d');
 ctx.beginPath();
 ctx.moveTo(80, 20);
-ctx.lineTo(80, height - 100);
-ctx.moveTo(20, height - 150);
-ctx.lineTo(width, height - 150);
+ctx.lineTo(80, 500);
+ctx.moveTo(20, 450);
+ctx.lineTo(800, 450);
 ctx.moveTo(rangedates[0], rangetemps[0]);
 for (n = 1; n < dates.length; n++){
 	ctx.lineTo(rangedates[n], rangetemps[n]);
 } 
 ctx.stroke();
-ctx.font = "24px sansserif";
+ctx.font = "24px serif";
 ctx.fillText("Average temperature per 24hrs in De Bilt (NL) (2014)", 180, 50);
 
-ctx.font = "20px sansserif";
-
-// draw y axis (this is the part where my question is about!)
-for (var n = -10; n < 40; n = n + 10){
+// draw y-axis values
+ctx.font = "16px serif";
+for (var n = -10; n < 40; n = n + 5){
 	console.log(n);
-	ctx.fillText(n, 35, 350 - 9 * n);
+	ctx.fillText(n, 50, 350 - 9 * n);
 	ctx.fillText("-", 72, 350 - 9 * n);
 }
- 
- 
- 
- 
+
+// draw y-axis labeleling
+ctx.save(); 
+ctx.rotate(-Math.PI / 2);
+ctx.textAlign = "center";
+ctx.fillText("temperature in degrees Celsius", -120, 100);
+ctx.restore();
+
+// draw x-yas labeling
+ctx.rotate(0);
+ctx.fillText("2014", 100, 440);
+ctx.fillText("month of the year", 400, 440);
+ctx.fillText("2015", 750, 440); 
+var months = ["February", "March", "April", "May", "June", "July", "August", "September", "October",
+				"November", "December", "January"];
+ctx.rotate(-Math.PI/4);
+ctx.textAlign = "right";
+for (var n = 0; n < months.length; n++){
+	ctx.fillText(months[n], -230 + n * 42, 430 + n * 42);
+}
