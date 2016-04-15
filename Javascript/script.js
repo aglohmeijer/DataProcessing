@@ -87,12 +87,11 @@ for (n = 1; n < dates.length; n++){
 } 
 ctx.stroke();
 ctx.font = "24px serif";
-ctx.fillText("Average temperature per 24hrs in De Bilt (NL) (2014)", 180, 50);
+ctx.fillText("Average temperature per 24hrs in De Bilt (NL) (2015)", 180, 50);
 
 // draw y-axis values
 ctx.font = "16px serif";
 for (var n = -10; n < 40; n = n + 5){
-	console.log(n);
 	ctx.fillText(n, 50, 350 - 9 * n);
 	ctx.fillText("-", 72, 350 - 9 * n);
 }
@@ -106,13 +105,74 @@ ctx.restore();
 
 // draw x-yas labeling
 ctx.rotate(0);
-ctx.fillText("2014", 100, 440);
+ctx.fillText("2015", 100, 440);
 ctx.fillText("month of the year", 400, 440);
-ctx.fillText("2015", 750, 440); 
+ctx.fillText("2016", 750, 440); 
 var months = ["February", "March", "April", "May", "June", "July", "August", "September", "October",
 				"November", "December", "January"];
 ctx.rotate(-Math.PI/4);
 ctx.textAlign = "right";
 for (var n = 0; n < months.length; n++){
 	ctx.fillText(months[n], -230 + n * 42, 430 + n * 42);
+}
+
+
+// short function to convert Javascript date into DD/MM/YYYY format (source: Stackoverflow)
+function convertDate(inputFormat) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(inputFormat);
+  return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+}
+
+// obtain second canvas element to draw cross-hair
+var canvas2 = document.getElementById('mycanvas2');
+var ctx2 = canvas2.getContext('2d');
+
+// define some constants to obtain the correct date when hovering/clicking
+var startdate = new Date(((array[0]).split(','))[0]).getTime();
+var enddate = new Date(((array[array.length - 2]).split(','))[0]).getTime();
+
+// define different transforms (need them in more than one function)
+var datetransform = createTransform([119, 800], [startdate, enddate]);
+var temptransform = createTransform([456, 50], [-10, 35]);
+
+// function which draws crosshair
+function showdateandtemp(a, b){
+	ctx2.beginPath();
+	ctx2.moveTo(80, b - 20);
+	ctx2.lineTo(800, b -20);
+	ctx2.moveTo(a -20 , 60);
+	ctx2.lineTo(a -20, 450);
+	ctx2.stroke();
+}
+
+// function to clean second canvas
+function erasecrosshair (){
+	ctx2.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+ctx2.font = "16px serif";
+
+// create an event listener to draw tooth pick and obtain information for tooltip
+mycanvas2.onclick = function(){
+	// only show tooltip info if user clicked inside the graph else do nothing
+	if (119 < event.clientX && event.clientX < 800 && 50 < event.clientY && event.clientY < 456){
+		// draw crosshair
+		showdateandtemp(event.clientX, event.clientY);
+
+		// render date & temperature info
+		var x = Math.round(datetransform(event.clientX));
+		var y = Math.round(temptransform(event.clientY));
+		ctx2.fillText("[" + convertDate(x) + ", " + y + " degrees Celcius]", 500, 100);
+
+		// erase information after two seconds
+		setTimeout(erasecrosshair, 2000);
+	}
+
+	// else inform user about correct use
+	else{
+		ctx2.fillText("Click inside the graph to see information!", 500, 130);
+		setTimeout(erasecrosshair, 3000);
+	}
+
 }
