@@ -6,6 +6,9 @@
  * 
  * Anne Lohmeijer
  * UvA ID 10447555
+ *
+ * Note: instead of a mouseMOVE I chose to implement a mouseCLICK tooltip since I could not exactly
+ * write the code such that the drawing and removal of the crosshiar where fluently enough to me.
  */
  
 // set variable to store data from HTML
@@ -72,7 +75,6 @@ var transform = createTransform(domaindates, [100, 780]);
 	for (n = 0; n < dates.length; n++){
 		rangedates[n] = transform(dates[n]);
 	}
-
 
 // draw the graph
 var ctx = canvas.getContext('2d');
