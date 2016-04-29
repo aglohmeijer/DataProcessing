@@ -1,0 +1,14 @@
+.header{
+		font: 30px sans-serif;
+		color: #8b0000;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: underline;
+	}
+
+div {
+  font: 15px sans-serif;
+  padding-left: 10px;
+  text-align: left;
+
+}
