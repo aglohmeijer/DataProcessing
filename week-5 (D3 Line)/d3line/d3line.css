@@ -1,0 +1,54 @@
+/* Style sheet for d3line.html */
+
+body {
+  font: 14px sans-serif;
+  background-color: #E0E0E0;
+}
+
+h1 {
+	font: 26px sans-serif;
+	text-align: center;
+}
+
+body > svg > g > g.x.axis > g:nth-child(1) > text{
+	display: none;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.2px;
+}
+
+.overlay {
+	fill: none;
+	stroke: none;
+	pointer-events: all;
+}
+
+.crosshair_line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1px;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
