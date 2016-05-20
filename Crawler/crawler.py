@@ -23,7 +23,7 @@ from pattern.web import URL, DOM
 
 # --------------------------------------------------------------------------
 # Constants:
-TOP_250_URL = 'http://www.imdb.com/chart/top'
+TOP_250_URL = 'https://en.wikipedia.org/wiki/List_of_federal_subjects_of_Russia_by_population'
 OUTPUT_CSV = 'top250movies.csv'
 SCRIPT_DIR = os.path.split(os.path.realpath(__file__))[0]
 BACKUP_DIR = os.path.join(SCRIPT_DIR, 'HTML_BACKUPS')
@@ -244,37 +244,15 @@ def scrape_movie_page(dom):
         of ratings.
     '''
     
+
+
+
+
     # retrieve all atrributes from a movie page, if multiple store in list
     title = str(dom.by_tag("div.titleBar")[0].by_tag('h1')[0][0]).split("&")[0]
     
-    movietime = str(dom.by_tag("div.title_wrapper")[0].by_tag('time')[0].content)
-    if 'm' in movietime:
-        duration = str(int(movietime.split('h')[0]) * 60 + int(movietime.split('h')[1].split('m')[0]))
-    else:
-        duration = str(int(movietime.split('h')[0]) * 60)
-    
-    genres= []
-    for genre in dom.by_tag('div.subtext')[0].by_tag('span.itemprop'):
-        genres.append(genre.content)
+    print dom
 
-    directors = []
-    for director in dom.by_tag('div.credit_summary_item')[0].by_tag('span.itemprop'):
-        directors.append(director.content)
-        
-    writers = []       
-    for writer in dom.by_tag('div.credit_summary_item')[1].by_tag('span.itemprop'):
-        writers.append(writer.content)
-    
-    actors = []    
-    for actor in dom.by_tag('div.credit_summary_item')[2].by_tag('span.itemprop'):
-        actors.append(actor.content)
-    
-    rating = dom.by_tag("div.ratingValue")[0].by_tag('strong')[0].by_tag('span')[0].content
-    
-    n_ratings = dom.by_tag("div.imdbRating")[0].by_tag('a')[0].by_tag('span')[0].content
-    
-    # Return everything of interest for this movie (all strings as specified
-    # in the docstring of this function).
     return title, duration, genres, directors, writers, actors, rating, \
         n_ratings
 

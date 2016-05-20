@@ -1,15 +1,6 @@
-/* Het is me niet gelukt de twee visualizaties interactief te krijgen. Heb heel lang gestruggled met het volgende:
-Als je een land aanklikt op de kaart wil ik dat de tooltip te voorschijn komt boven de bijbehorende bar. Het probleem is dat
-elke bar geen uniek ID heeft en je dus niet de betreffende bar kunt selecten en hiervan de tooltip kunt laten zien. Dit wilde ik oplossen door bij (1) (regel 84)
-te proberen elke bar een uniek ID te geven overeenkomend met de landcode zodat je hierna de specifieke bar kunt selecten op basis van het aangeklikte land.
-Ik weet niet hoe je kunt loopen zodat je per bar die wordt geappend je een uniek ID kunt toevoegen. Heb 'data.forEach(function(item))..' geprobeerd
-maar dan geeft hij elke bar het id = CHE (de landcode van de eerste bar).
-TOEVOEGING: Bij mijn vorige beoordeling had ik het commentaar dat de barchart te breed was voor het beeldscherm, maar dit is bij mij niet zo.
-Mijn eigen laptopscherm heeft namelijk een resolutie van 1920 x 1080 dus bij mij past hij keurig binnen het scherm! */
-
 // BARCHART SCRIPT
 
-/* set margins for svg chart and scales for axis' */
+// set margins for svg chart and scales for axis'
 var margin = {top: 10, right: 30, bottom: 150, left: 50},
     width = 1600,
     height = 400;
@@ -29,7 +20,7 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(function(d) {return d;});
 
-/* use d3.tip for tooltip above each bar */
+// use d3.tip for tooltip above each bar
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
@@ -37,22 +28,24 @@ var tip = d3.tip()
     return "<span style='color:#ffbf00'>" + d.country + ": " + d.qoflifeindex + "</span>";
   })
 
-/* create chart */
+// create chart
 var chart = d3.select(".chart")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-/* call on tooltip */
+// call on tooltip
   chart.call(tip);
 
-/* load data from extern file */
-d3.csv('dataweek7.csv', type, function(error, data) {
+// load data from extern file
+d3.csv('dataweek7.csv', function(error, data) {
   x.domain(data.map(function(d) { return d.country; }));
   y.domain([0, d3.max(data, function(d) { return d.qoflifeindex; })]);
 
-/* add labels to x axis */
+  console.log(data);
+
+// add labels to x axis
   chart.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -63,7 +56,7 @@ d3.csv('dataweek7.csv', type, function(error, data) {
       .attr("dy", "-0.1em")
         .attr("transform", "rotate(-60)");
 
-/* add labels to y axis */
+// add labels to y axis
 chart.append("g")
     .attr("class", "y axis")
     .call(yAxis)
@@ -76,7 +69,7 @@ chart.append("g")
 
 //  console.log(data[0].ccode);
 
-/* create bars inside chart */
+// create bars inside chart
 chart.selectAll(".bar")
     .data(data)
   .enter().append("rect")
@@ -84,21 +77,16 @@ chart.selectAll(".bar")
     // (1) .attr("id", data[..].ccode)... hier op alle manieren geprobeerd elke bar een uniek ID te geven
     .attr("x", function(d) { return x(d.country); })
     .attr("y", function(d) { return y(d.qoflifeindex); })
-    .attr("height", function(d) { return height - y(d.qoflifeindex); })
+    .attr("height", function(d) { console.log("D", d.qoflifeindex, "H", height - y(d.qoflifeindex), "Y", y(d.qoflifeindex)); return (height - y(d.qoflifeindex)); })
     .attr("width", x.rangeBand())
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
 
 
-});
-
 function type(d) {
   d.qoflifeindex = +d.qoflifeindex; // coerce to number
     return d;
 }
-
-/* load data from extern file for world map*/
-d3.csv('dataweek7.csv', function(error, data) {
 
 var dataset = {};
 
@@ -136,8 +124,8 @@ new Datamap({
         d3.tip(geography.id);
 
         of
-        chart.call(tip);
-        */
+        chart.call(tip);*/
+    
     
       });
     },
@@ -162,4 +150,3 @@ new Datamap({
         }
   });
 });
-
