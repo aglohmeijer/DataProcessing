@@ -1,4 +1,4 @@
-/* BARCHART SCRIPT
+/* ANNE LOHMEIJER _ LINKED VIEWS SCRIPT
 De gelinkte visualisatie staat beschreven onderaan de pagina zelf. Hij is gelukt, er zit nog wel een bug in waar ik geen tijd meer voor had.
 Als je eerst over de barchart 'hovert' dan geeft hij de tooltip op de correcte locatie weer (boven de opgelichte bar). Als je daarna 
 over de wereldkaart hovert met de muis en daarna weer over de barchart, dan is de tooltip van de barchart opeens op een
